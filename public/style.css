@@ -7,3 +7,8 @@ body {
     background-color: rgb(255, 105, 105);
     font-weight: bold;
 }
+
+.green {
+    color: rgb(0, 128, 0);
+    font-weight: bold;
+}

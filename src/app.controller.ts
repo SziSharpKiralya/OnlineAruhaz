@@ -140,4 +140,19 @@ export class AppController {
       success: true,
     };
   }
+
+  @Get('/stats')
+  @Render('stats')
+  getStats() {
+    const osszesTermek = termekek.length;
+    const legdragabbTermek = termekek.reduce((max, product) => product.price > max.price ? product : max, termekek[0]);
+    const legolcsobbTermek = termekek.reduce((min, product) => product.price < min.price ? product : min, termekek[0]);
+
+    return {
+      title: 'Statisztikák',
+      all: osszesTermek,
+      max: legdragabbTermek,
+      min: legolcsobbTermek
+    };
+  }
 }
