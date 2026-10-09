@@ -1,4 +1,4 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Query, Render } from '@nestjs/common';
 import { AppService } from './app.service.js';
 import { Product } from './interfaces/Product.js';
 
@@ -88,12 +88,21 @@ export class AppController {
 
   @Get('filter')
   @Render('filter')
-  getFilter() {
+  getFilter(@Query("categorySend") categorySend: string) {
     const filteredProducts = [...termekek].sort((a, b) => b.stock - a.stock);
 
-    return {
-      title: 'Szűrő',
-      termekek: filteredProducts
+    if (!categorySend) {
+      return {
+        title: 'Szűrő',
+        termekek: filteredProducts
+      }
+    }
+    else {
+      console.log(categorySend);
+      return {
+        title: 'Szűrő',
+        termekek: filteredProducts.filter(product => product.category === categorySend)
+      }
     }
   }
 
