@@ -82,6 +82,26 @@ export class AppController {
   getTermeklista() {
     return {
       title: 'Terméklista',
+      termekek: termekek
+    }
+  }
+
+  @Get('filter')
+  @Render('filter')
+  getFilter() {
+    const filteredProducts = [...termekek].sort((a, b) => b.stock - a.stock);
+
+    return {
+      title: 'Szűrő',
+      termekek: filteredProducts
+    }
+  }
+
+  @Get('new')
+  @Render('new')
+  getNew() {
+    return {
+      title: 'Új felvétele'
     }
   }
 }

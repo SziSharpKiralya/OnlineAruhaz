@@ -3,3 +3,7 @@ body {
     color:rgb(58, 46, 135);
 }
 
+.piros {
+    background-color: rgb(255, 105, 105);
+    font-weight: bold;
+}
